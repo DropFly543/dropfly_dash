@@ -53843,7 +53843,7 @@ $1(a){this.a.T()},
 $S:3}
 A.agb.prototype={
 $1(a){var s=t.a.a(a)
-return A.agQ(A.a_(["id",J.a9(s,"id"),"phone",J.a9(s,"phone"),"full_name",J.a9(s,"full_name"),"role",J.a9(s,"role"),"fcm_token",J.a9(s,"fcm_token"),"is_active",J.a9(s,"is_active"),"created_at",J.a9(s,"created_at"),"updated_at",J.a9(s,"updated_at")],t.N,t.z))},
+return A.agQ(A.a_(["id",J.a9(s,"id"),"phone",J.a9(s,"phone"),"full_name",J.a9(s,"full_name"),"role",J.a9(s,"role"),"password",J.a9(s,"password"),"fcm_token",J.a9(s,"fcm_token"),"is_active",J.a9(s,"is_active"),"created_at",J.a9(s,"created_at"),"updated_at",J.a9(s,"updated_at")],t.N,t.z))},
 $S:699}
 A.agc.prototype={
 $1(a){this.a.T()},
