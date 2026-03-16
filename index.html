@@ -40,6 +40,48 @@
       });
     }
 </script>
+<script>
+    const firebaseConfig = {
+       apiKey: "AIzaSyCkJNXgDwTBGIflxcdiLPf7XggewMII5H8",
+       authDomain: "mirajnet-1c452.firebaseapp.com",
+       projectId: "mirajnet-1c452",
+      storageBucket: "mirajnet-1c452.firebasestorage.app",
+       messagingSenderId: "653723006220",
+       appId: "1:653723006220:web:985267cdbd4148edd98529",
+        measurementId: "G-EVGF3XWLDY"
+    };
+
+    // 🔥 تهيئة Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const analytics = firebase.analytics();
+    const messaging = firebase.messaging();
+
+    // 🔔 طلب إذن المستخدم للإشعارات
+    Notification.requestPermission().then((permission) => {
+      if (permission === "granted") {
+        messaging.getToken({
+          vapidKey: "BCKDLtuQ_JxXWWiSQ5ATYWo_dpELAsadBPNLbbhbg1ufX84yWc50vApvkTRLlXZL3FS2vhnQ6diR0m3fUOOoIcI" // 👈 استبدل هذا بمفتاح VAPID من FCM
+        }).then((currentToken) => {
+          if (currentToken) {
+            console.log("✅ Web FCM Token:", currentToken);
+          } else {
+            console.warn("⚠️ لم يتم الحصول على توكن بعد!");
+          }
+        }).catch((err) => {
+          console.error("❌ خطأ في جلب التوكن:", err);
+        });
+      } else {
+        console.warn("🚫 تم رفض الإذن بالإشعارات");
+      }
+    });
+
+    // 📩 استقبال الإشعارات أثناء فتح الصفحة
+    messaging.onMessage((payload) => {
+      console.log("📨 إشعار جديد:", payload);
+      const { title, body } = payload.notification;
+      new Notification(title, { body });
+    });
+</script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>

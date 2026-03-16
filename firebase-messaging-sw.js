@@ -13,11 +13,16 @@ firebase.initializeApp({
 
 const messaging = firebase.messaging();
 
-messaging.onBackgroundMessage(function(payload) {
-  console.log("Message received: ", payload);
+// ✅ استقبال الإشعارات أثناء عمل التطبيق بالخلفية
+messaging.onBackgroundMessage((payload) => {
+  console.log("📩 إشعار في الخلفية:", payload);
 
-  self.registration.showNotification(payload.notification.title, {
-    body: payload.notification.body,
-    icon: "/icons/Icon-192.png"
-  });
+  const notificationTitle = payload.notification?.title || "إشعار جديد";
+  const notificationOptions = {
+    body: payload.notification?.body || "",
+    icon: "/icons/Icon-192.png",
+    badge: "/icons/Icon-192.png",
+  };
+
+  self.registration.showNotification(notificationTitle, notificationOptions);
 });
